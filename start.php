@@ -22,9 +22,9 @@ require_once 'config-sqlite.php';
 $pdo = getDBConnection();
 echo "✅ Database ready!\n\n";
 
-// Display access URLs
+// Get port from command line or use default
 $host = 'localhost';
-$port = 8000;
+$port = isset($argv[1]) ? intval($argv[1]) : 8000;
 
 echo "╔══════════════════════════════════════════════════════╗\n";
 echo "║                                                      ║\n";
