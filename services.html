@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dịch vụ - HiChina</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .services-section {
+            padding: 80px 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 15px 40px rgba(0, 102, 204, 0.15);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .service-icon i {
+            font-size: 2.5rem;
+            color: var(--white);
+        }
+
+        .service-card h3 {
+            font-size: 1.6rem;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .service-features li {
+            padding: 10px 0;
+            color: var(--text-light);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .service-features li:last-child {
+            border-bottom: none;
+        }
+
+        .service-features i {
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+
+        .service-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .service-btn:hover {
+            background: var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        .process-section {
+            background: var(--bg-light);
+            padding: 80px 0;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        .process-step h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .process-step p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>HiChina</h1>
+                    <p class="tagline">Thiết bị gia dụng chất lượng</p>
+                </div>
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="index.html" data-vi="Trang chủ" data-en="Home">Trang chủ</a></li>
+                        <li><a href="about.html" data-vi="Giới thiệu" data-en="About">Giới thiệu</a></li>
+                        <li><a href="products.html" data-vi="Sản phẩm" data-en="Products">Sản phẩm</a></li>
+                        <li><a href="services.html" class="active" data-vi="Dịch vụ" data-en="Services">Dịch vụ</a></li>
+                        <li><a href="news.html" data-vi="Tin tức" data-en="News">Tin tức</a></li>
+                        <li><a href="contact.html" data-vi="Liên hệ" data-en="Contact">Liên hệ</a></li>
+                    </ul>
+                </nav>
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="vi">VI</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 data-vi="Dịch vụ của chúng tôi" data-en="Our Services">Dịch vụ của chúng tôi</h1>
+            <p data-vi="Giải pháp toàn diện cho mọi nhu cầu gia dụng" data-en="Comprehensive solutions for all household needs">Giải pháp toàn diện cho mọi nhu cầu gia dụng</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3 data-vi="Bán sản phẩm chính hãng" data-en="Selling Genuine Products">Bán sản phẩm chính hãng</h3>
+                    <p data-vi="Cung cấp đầy đủ các thiết bị gia dụng từ các thương hiệu hàng đầu thế giới với giá cạnh tranh nhất thị trường." data-en="Providing full range of household appliances from world-leading brands at the most competitive prices.">
+                        Cung cấp đầy đủ các thiết bị gia dụng từ các thương hiệu hàng đầu thế giới với giá cạnh tranh nhất thị trường.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span data-vi="Sản phẩm 100% chính hãng" data-en="100% Genuine Products">Sản phẩm 100% chính hãng</span></li>
+                        <li><i class="fas fa-check"></i> <span data-vi="Tem bảo hành điện tử" data-en="Electronic Warranty Label">Tem bảo hành điện tử</span></li>
+                        <li><i class="fas fa-check"></i> <span data-vi="Giá cạnh tranh" data-en="Competitive Prices">Giá cạnh tranh</span></li>
+                        <li><i class="fas fa-check"></i> <span data-vi="Đổi trả trong 30 ngày" data-en="30-day Return">Đổi trả trong 30 ngày</span></li>
+                    </ul>
+                    <a href="products.html" class="service-btn" data-vi="Xem sản phẩm" data-en="View Products">Xem sản phẩm</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 data-vi="Lắp đặt & Vận hành" data-en="Installation & Operation">Lắp đặt & Vận hành</h3>
+                    <p data-vi="Đội ngũ kỹ thuật viên chuyên nghiệp, giàu kinh nghiệm sẽ lắp đặt và hướng dẫn sử dụng thiết bị tận nơi cho bạn." data-en="Professional, experienced technicians will install and guide you on-site equipment usage.">
+                        Đội ngũ kỹ thuật viên chuyên nghiệp, giàu kinh nghiệm sẽ lắp đặt và hướng dẫn sử dụng thiết bị tận nơi cho bạn.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span data-vi="Miễn phí lắp đặt" data-en="Free Installation">Miễn phí lắp đặt</span></li>
+                        <li><i class="fas fa-check"></i> <span data-vi="Hướng dẫn chi tiết" data-en="Detailed Instructions">Hướng dẫn chi tiết</span></li>
+                        <li><i class="fas fa-check"></i> <span data-vi="Kiểm tra hoạt động" data-en="Operation Check">Kiểm tra hoạt động</span></li>
+                        <li><i class="fas fa-check"></i> <span data-vi="Hẹn giờ linh hoạt" data-en="Flexible Scheduling">Hẹn giờ linh hoạt</span></li>
+                    </ul>
+                    <a href="contact.html" class="service-btn" data-vi="Đặt lịch" data-en="Schedule">Đặt lịch</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-wrench"></i>
+                    </div>
+                    <h3 data-vi="Bảo hành & Sửa chữa" data-en="Warranty & Repair">Bảo hành & Sửa chữa</h3>
+                    <p data-vi="Dịch vụ bảo hành chính hãng lên đến 5 năm, sửa chữa nhanh chóng với linh kiện chính hãng, đội ngũ kỹ thuật chuyên môn cao." data-en="Official warranty service up to 5 years, quick repair with genuine parts, highly qualified technical team.">
+                        Dịch vụ bảo hành chính hãng lên đến 5 năm, sửa chữa nhanh chóng với linh kiện chính hãng, đội ngũ kỹ thuật chuyên môn cao.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span data-vi="Bảo hành 2-5 năm" data-en="2-5 Year Warranty">Bảo hành 2-5 năm</span></li>
+                        <li><i class="fas fa-check"></i> <span data-vi="Sửa chữa tận nhà" data-en="Home Repair">Sửa chữa tận nhà</span></li>
+                        <li><i class="fas fa-check"></i> <span data-vi="Linh kiện chính hãng" data-en="Genuine Parts">Linh kiện chính hãng</span></li>
+                        <li><i class="fas fa-check"></i> <span data-vi="Hỗ trợ 24/7" data-en="24/7 Support">Hỗ trợ 24/7</span></li>
+                    </ul>
+                    <a href="contact.html" class="service-btn" data-vi="Liên hệ" data-en="Contact">Liên hệ</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 data-vi="Tư vấn miễn phí" data-en="Free Consultation">Tư vấn miễn phí</h3>
+                    <p data-vi="Chuyên viên tư vấn nhiệt tình, giúp bạn lựa chọn sản phẩm phù hợp nhất với nhu cầu và ngân sách của gia đình." data-en="Enthusiastic consultants help you choose the most suitable products for your family's needs and budget.">
+                        Chuyên viên tư vấn nhiệt tình, giúp bạn lựa chọn sản phẩm phù hợp nhất với nhu cầu và ngân sách của gia đình.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span data-vi="Tư vấn chuyên sâu" data-en="In-depth Consultation">Tư vấn chuyên sâu</span></li>
+                        <li><i class="fas fa-check"></i> <span data-vi="So sánh sản phẩm" data-en="Product Comparison">So sánh sản phẩm</span></li>
+                        <li><i class="fas fa-check"></i> <span data-vi="Gợi ý phù hợp" data-en="Suitable Suggestions">Gợi ý phù hợp</span></li>
+                        <li><i class="fas fa-check"></i> <span data-vi="Không phát sinh chi phí" data-en="No Additional Charges">Không phát sinh chi phí</span></li>
+                    </ul>
+                    <a href="contact.html" class="service-btn" data-vi="Tư vấn ngay" data-en="Consult Now">Tư vấn ngay</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3 data-vi="Giao hàng & Lắp đặt" data-en="Delivery & Installation">Giao hàng & Lắp đặt</h3>
+                    <p data-vi="Giao hàng nhanh chóng toàn quốc, miễn phí vận chuyển và lắp đặt tận nơi trong vòng 24h sau khi đặt hàng." data-en="Fast nationwide delivery, free shipping and on-site installation within 24h after ordering.">
+                        Giao hàng nhanh chóng toàn quốc, miễn phí vận chuyển và lắp đặt tận nơi trong vòng 24h sau khi đặt hàng.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span data-vi="Giao hàng 24h" data-en="24h Delivery">Giao hàng 24h</span></li>
+                        <li><i class="fas fa-check"></i> <span data-vi="Miễn phí vận chuyển" data-en="Free Shipping">Miễn phí vận chuyển</span></li>
+                        <li><i class="fas fa-check"></i> <span data-vi="Kiểm tra trước khi nhận" data-en="Check Before Receipt">Kiểm tra trước khi nhận</span></li>
+                        <li><i class="fas fa-check"></i> <span data-vi="Bảo hiểm hàng hóa" data-en="Goods Insurance">Bảo hiểm hàng hóa</span></li>
+                    </ul>
+                    <a href="products.html" class="service-btn" data-vi="Mua ngay" data-en="Buy Now">Mua ngay</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3 data-vi="Thu cũ đổi mới" data-en="Trade-In Program">Thu cũ đổi mới</h3>
+                    <p data-vi="Chương trình thu mua thiết bị cũ với giá cao, hỗ trợ đổi sang sản phẩm mới với ưu đãi hấp dẫn." data-en="Old equipment buyback program at high prices, support to exchange for new products with attractive offers.">
+                        Chương trình thu mua thiết bị cũ với giá cao, hỗ trợ đổi sang sản phẩm mới với ưu đãi hấp dẫn.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span data-vi="Định giá miễn phí" data-en="Free Valuation">Định giá miễn phí</span></li>
+                        <li><i class="fas fa-check"></i> <span data-vi="Thu mua giá cao" data-en="High Buyback Price">Thu mua giá cao</span></li>
+                        <li><i class="fas fa-check"></i> <span data-vi="Giảm thêm 10%" data-en="Extra 10% Off">Giảm thêm 10%</span></li>
+                        <li><i class="fas fa-check"></i> <span data-vi="Xử lý môi trường" data-en="Eco-friendly Disposal">Xử lý môi trường</span></li>
+                    </ul>
+                    <a href="contact.html" class="service-btn" data-vi="Định giá ngay" data-en="Get Quote">Định giá ngay</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-vi="Quy trình dịch vụ" data-en="Service Process">Quy trình dịch vụ</h2>
+                <div class="divider"></div>
+                <p data-vi="4 bước đơn giản để trải nghiệm dịch vụ chuyên nghiệp" data-en="4 simple steps to experience professional service">4 bước đơn giản để trải nghiệm dịch vụ chuyên nghiệp</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h4 data-vi="Liên hệ & Tư vấn" data-en="Contact & Consultation">Liên hệ & Tư vấn</h4>
+                    <p data-vi="Gọi điện hoặc gửi thông tin, chuyên viên sẽ tư vấn chi tiết về sản phẩm và dịch vụ" data-en="Call or send information, specialist will provide detailed advice on products and services">Gọi điện hoặc gửi thông tin, chuyên viên sẽ tư vấn chi tiết về sản phẩm và dịch vụ</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h4 data-vi="Đặt hàng & Thanh toán" data-en="Order & Payment">Đặt hàng & Thanh toán</h4>
+                    <p data-vi="Chọn sản phẩm, thanh toán linh hoạt qua nhiều hình thức khác nhau" data-en="Choose products, flexible payment through various methods">Chọn sản phẩm, thanh toán linh hoạt qua nhiều hình thức khác nhau</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h4 data-vi="Giao hàng & Lắp đặt" data-en="Delivery & Installation">Giao hàng & Lắp đặt</h4>
+                    <p data-vi="Nhận hàng tại nhà, kiểm tra và lắp đặt miễn phí bởi kỹ thuật viên" data-en="Home delivery, free inspection and installation by technician">Nhận hàng tại nhà, kiểm tra và lắp đặt miễn phí bởi kỹ thuật viên</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h4 data-vi="Bảo hành & Chăm sóc" data-en="Warranty & Care">Bảo hành & Chăm sóc</h4>
+                    <p data-vi="Hỗ trợ bảo hành, bảo dưỡng định kỳ và chăm sóc khách hàng lâu dài" data-en="Warranty support, periodic maintenance and long-term customer care">Hỗ trợ bảo hành, bảo dưỡng định kỳ và chăm sóc khách hàng lâu dài</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>HiChina</h3>
+                    <p data-vi="Thiết bị gia dụng chất lượng cao, phục vụ hàng ngàn gia đình Việt Nam" data-en="High-quality household appliances, serving thousands of Vietnamese families">Thiết bị gia dụng chất lượng cao, phục vụ hàng ngàn gia đình Việt Nam</p>
+                </div>
+                <div class="footer-col">
+                    <h4 data-vi="Liên kết nhanh" data-en="Quick Links">Liên kết nhanh</h4>
+                    <ul>
+                        <li><a href="about.html" data-vi="Giới thiệu" data-en="About">Giới thiệu</a></li>
+                        <li><a href="products.html" data-vi="Sản phẩm" data-en="Products">Sản phẩm</a></li>
+                        <li><a href="services.html" data-vi="Dịch vụ" data-en="Services">Dịch vụ</a></li>
+                        <li><a href="news.html" data-vi="Tin tức" data-en="News">Tin tức</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-vi="Liên hệ" data-en="Contact">Liên hệ</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> <span data-vi="Hà Nội, Việt Nam" data-en="Hanoi, Vietnam">Hà Nội, Việt Nam</span></li>
+                        <li><i class="fas fa-phone"></i> <span>+84 123 456 789</span></li>
+                        <li><i class="fas fa-envelope"></i> <span>info@hichina.vn</span></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-vi="Theo dõi chúng tôi" data-en="Follow Us">Theo dõi chúng tôi</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HiChina. <span data-vi="Tất cả quyền được bảo lưu." data-en="All rights reserved.">Tất cả quyền được bảo lưu.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

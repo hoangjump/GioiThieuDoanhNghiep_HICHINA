@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản phẩm - HiChina</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .products-section {
+            padding: 80px 0;
+        }
+
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 30px;
+            border: 2px solid var(--primary-color);
+            background: var(--white);
+            color: var(--primary-color);
+            cursor: pointer;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background: var(--bg-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-category {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .product-name {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .product-desc {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .product-features li {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .product-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .btn-detail {
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-detail:hover {
+            background: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-tabs {
+                flex-direction: column;
+            }
+
+            .filter-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>HiChina</h1>
+                    <p class="tagline">Thiết bị gia dụng chất lượng</p>
+                </div>
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="index.html" data-vi="Trang chủ" data-en="Home">Trang chủ</a></li>
+                        <li><a href="about.html" data-vi="Giới thiệu" data-en="About">Giới thiệu</a></li>
+                        <li><a href="products.html" class="active" data-vi="Sản phẩm" data-en="Products">Sản phẩm</a></li>
+                        <li><a href="services.html" data-vi="Dịch vụ" data-en="Services">Dịch vụ</a></li>
+                        <li><a href="news.html" data-vi="Tin tức" data-en="News">Tin tức</a></li>
+                        <li><a href="contact.html" data-vi="Liên hệ" data-en="Contact">Liên hệ</a></li>
+                    </ul>
+                </nav>
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="vi">VI</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 data-vi="Sản phẩm của chúng tôi" data-en="Our Products">Sản phẩm của chúng tôi</h1>
+            <p data-vi="Đa dạng sản phẩm chất lượng cao cho mọi nhu cầu gia đình" data-en="Diverse high-quality products for all family needs">Đa dạng sản phẩm chất lượng cao cho mọi nhu cầu gia đình</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <div class="filter-tabs">
+                <button class="filter-btn active" data-filter="all" data-vi="Tất cả" data-en="All">Tất cả</button>
+                <button class="filter-btn" data-filter="kitchen" data-vi="Nhà bếp" data-en="Kitchen">Nhà bếp</button>
+                <button class="filter-btn" data-filter="cooling" data-vi="Làm mát" data-en="Cooling">Làm mát</button>
+                <button class="filter-btn" data-filter="electronics" data-vi="Điện tử" data-en="Electronics">Điện tử</button>
+                <button class="filter-btn" data-filter="washing" data-vi="Giặt giũ" data-en="Washing">Giặt giũ</button>
+            </div>
+
+            <div class="products-grid">
+                <!-- Kitchen Products -->
+                <div class="product-card" data-category="kitchen">
+                    <span class="product-badge" data-vi="Mới" data-en="New">Mới</span>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/280x250" alt="Máy xay sinh tố">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category" data-vi="Thiết bị nhà bếp" data-en="Kitchen Appliances">Thiết bị nhà bếp</div>
+                        <h3 class="product-name" data-vi="Máy xay sinh tố đa năng" data-en="Multi-function Blender">Máy xay sinh tố đa năng</h3>
+                        <p class="product-desc" data-vi="Công suất mạnh mẽ, thiết kế hiện đại, dễ sử dụng và vệ sinh" data-en="Powerful performance, modern design, easy to use and clean">Công suất mạnh mẽ, thiết kế hiện đại, dễ sử dụng và vệ sinh</p>
+                        <ul class="product-features">
+                            <li data-vi="Công suất 1000W" data-en="1000W Power">Công suất 1000W</li>
+                            <li data-vi="Dung tích 2L" data-en="2L Capacity">Dung tích 2L</li>
+                            <li data-vi="6 tốc độ xay" data-en="6 Speed Levels">6 tốc độ xay</li>
+                        </ul>
+                        <div class="product-footer">
+                            <div class="product-price">2.500.000đ</div>
+                            <a href="#" class="btn-detail" data-vi="Chi tiết" data-en="Details">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="kitchen">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/280x250" alt="Nồi cơm điện">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category" data-vi="Thiết bị nhà bếp" data-en="Kitchen Appliances">Thiết bị nhà bếp</div>
+                        <h3 class="product-name" data-vi="Nồi cơm điện thông minh" data-en="Smart Rice Cooker">Nồi cơm điện thông minh</h3>
+                        <p class="product-desc" data-vi="Công nghệ nấu IH, giữ nhiệt lâu, cơm ngon mềm mại" data-en="IH cooking technology, long heat retention, delicious soft rice">Công nghệ nấu IH, giữ nhiệt lâu, cơm ngon mềm mại</p>
+                        <ul class="product-features">
+                            <li data-vi="Dung tích 1.8L" data-en="1.8L Capacity">Dung tích 1.8L</li>
+                            <li data-vi="10 chế độ nấu" data-en="10 Cooking Modes">10 chế độ nấu</li>
+                            <li data-vi="Hẹn giờ 24h" data-en="24h Timer">Hẹn giờ 24h</li>
+                        </ul>
+                        <div class="product-footer">
+                            <div class="product-price">3.200.000đ</div>
+                            <a href="#" class="btn-detail" data-vi="Chi tiết" data-en="Details">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cooling Products -->
+                <div class="product-card" data-category="cooling">
+                    <span class="product-badge" data-vi="Bán chạy" data-en="Best Seller">Bán chạy</span>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/280x250" alt="Máy lạnh">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category" data-vi="Điều hòa & Làm mát" data-en="Air Conditioning">Điều hòa & Làm mát</div>
+                        <h3 class="product-name" data-vi="Máy lạnh Inverter 1.5HP" data-en="1.5HP Inverter Air Conditioner">Máy lạnh Inverter 1.5HP</h3>
+                        <p class="product-desc" data-vi="Tiết kiệm điện, làm lạnh nhanh, hoạt động êm ái" data-en="Energy saving, fast cooling, quiet operation">Tiết kiệm điện, làm lạnh nhanh, hoạt động êm ái</p>
+                        <ul class="product-features">
+                            <li data-vi="Công nghệ Inverter" data-en="Inverter Technology">Công nghệ Inverter</li>
+                            <li data-vi="Lọc không khí" data-en="Air Filter">Lọc không khí</li>
+                            <li data-vi="Chế độ ngủ" data-en="Sleep Mode">Chế độ ngủ</li>
+                        </ul>
+                        <div class="product-footer">
+                            <div class="product-price">9.500.000đ</div>
+                            <a href="#" class="btn-detail" data-vi="Chi tiết" data-en="Details">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="cooling">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/280x250" alt="Quạt điều hòa">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category" data-vi="Điều hòa & Làm mát" data-en="Air Conditioning">Điều hòa & Làm mát</div>
+                        <h3 class="product-name" data-vi="Quạt điều hòa hơi nước" data-en="Water Air Cooler">Quạt điều hòa hơi nước</h3>
+                        <p class="product-desc" data-vi="Làm mát tự nhiên, tiết kiệm điện năng, di chuyển dễ dàng" data-en="Natural cooling, energy efficient, easy to move">Làm mát tự nhiên, tiết kiệm điện năng, di chuyển dễ dàng</p>
+                        <ul class="product-features">
+                            <li data-vi="Bình chứa 30L" data-en="30L Tank">Bình chứa 30L</li>
+                            <li data-vi="Làm mát 30m²" data-en="Cools 30m²">Làm mát 30m²</li>
+                            <li data-vi="Điều khiển từ xa" data-en="Remote Control">Điều khiển từ xa</li>
+                        </ul>
+                        <div class="product-footer">
+                            <div class="product-price">2.800.000đ</div>
+                            <a href="#" class="btn-detail" data-vi="Chi tiết" data-en="Details">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Electronics -->
+                <div class="product-card" data-category="electronics">
+                    <span class="product-badge" data-vi="Mới" data-en="New">Mới</span>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/280x250" alt="Smart TV">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category" data-vi="Điện tử gia dụng" data-en="Home Electronics">Điện tử gia dụng</div>
+                        <h3 class="product-name" data-vi="Smart TV 4K 55 inch" data-en="55-inch 4K Smart TV">Smart TV 4K 55 inch</h3>
+                        <p class="product-desc" data-vi="Màn hình 4K sắc nét, hệ điều hành Android TV, kết nối Internet" data-en="Sharp 4K screen, Android TV OS, Internet connectivity">Màn hình 4K sắc nét, hệ điều hành Android TV, kết nối Internet</p>
+                        <ul class="product-features">
+                            <li data-vi="Độ phân giải 4K" data-en="4K Resolution">Độ phân giải 4K</li>
+                            <li data-vi="Android TV 11" data-en="Android TV 11">Android TV 11</li>
+                            <li data-vi="Âm thanh Dolby" data-en="Dolby Audio">Âm thanh Dolby</li>
+                        </ul>
+                        <div class="product-footer">
+                            <div class="product-price">12.500.000đ</div>
+                            <a href="#" class="btn-detail" data-vi="Chi tiết" data-en="Details">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="electronics">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/280x250" alt="Loa Bluetooth">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category" data-vi="Điện tử gia dụng" data-en="Home Electronics">Điện tử gia dụng</div>
+                        <h3 class="product-name" data-vi="Loa Bluetooth chống nước" data-en="Waterproof Bluetooth Speaker">Loa Bluetooth chống nước</h3>
+                        <p class="product-desc" data-vi="Âm thanh sống động, pin 12h, chống nước IPX7" data-en="Vivid sound, 12h battery, IPX7 waterproof">Âm thanh sống động, pin 12h, chống nước IPX7</p>
+                        <ul class="product-features">
+                            <li data-vi="Pin 12 giờ" data-en="12h Battery">Pin 12 giờ</li>
+                            <li data-vi="Chống nước IPX7" data-en="IPX7 Waterproof">Chống nước IPX7</li>
+                            <li data-vi="Kết nối TWS" data-en="TWS Connection">Kết nối TWS</li>
+                        </ul>
+                        <div class="product-footer">
+                            <div class="product-price">1.200.000đ</div>
+                            <a href="#" class="btn-detail" data-vi="Chi tiết" data-en="Details">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Washing -->
+                <div class="product-card" data-category="washing">
+                    <span class="product-badge" data-vi="Bán chạy" data-en="Best Seller">Bán chạy</span>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/280x250" alt="Máy giặt">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category" data-vi="Giặt giũ & Chăm sóc" data-en="Washing & Care">Giặt giũ & Chăm sóc</div>
+                        <h3 class="product-name" data-vi="Máy giặt Inverter 9kg" data-en="9kg Inverter Washing Machine">Máy giặt Inverter 9kg</h3>
+                        <p class="product-desc" data-vi="Giặt sạch sâu, tiết kiệm nước, hoạt động êm ái" data-en="Deep clean, water-saving, quiet operation">Giặt sạch sâu, tiết kiệm nước, hoạt động êm ái</p>
+                        <ul class="product-features">
+                            <li data-vi="Công nghệ Inverter" data-en="Inverter Technology">Công nghệ Inverter</li>
+                            <li data-vi="12 chương trình giặt" data-en="12 Wash Programs">12 chương trình giặt</li>
+                            <li data-vi="Tiết kiệm điện 40%" data-en="40% Energy Saving">Tiết kiệm điện 40%</li>
+                        </ul>
+                        <div class="product-footer">
+                            <div class="product-price">7.500.000đ</div>
+                            <a href="#" class="btn-detail" data-vi="Chi tiết" data-en="Details">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="washing">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/280x250" alt="Bàn ủi">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category" data-vi="Giặt giũ & Chăm sóc" data-en="Washing & Care">Giặt giũ & Chăm sóc</div>
+                        <h3 class="product-name" data-vi="Bàn ủi hơi nước cao cấp" data-en="Premium Steam Iron">Bàn ủi hơi nước cao cấp</h3>
+                        <p class="product-desc" data-vi="Ủi phẳng nhanh chóng, hơi nước mạnh mẽ, mặt đế chống dính" data-en="Quick smoothing, powerful steam, non-stick soleplate">Ủi phẳng nhanh chóng, hơi nước mạnh mẽ, mặt đế chống dính</p>
+                        <ul class="product-features">
+                            <li data-vi="Công suất 2400W" data-en="2400W Power">Công suất 2400W</li>
+                            <li data-vi="Hơi nước 45g/phút" data-en="45g/min Steam">Hơi nước 45g/phút</li>
+                            <li data-vi="Tự động ngắt điện" data-en="Auto Shut-off">Tự động ngắt điện</li>
+                        </ul>
+                        <div class="product-footer">
+                            <div class="product-price">890.000đ</div>
+                            <a href="#" class="btn-detail" data-vi="Chi tiết" data-en="Details">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>HiChina</h3>
+                    <p data-vi="Thiết bị gia dụng chất lượng cao, phục vụ hàng ngàn gia đình Việt Nam" data-en="High-quality household appliances, serving thousands of Vietnamese families">Thiết bị gia dụng chất lượng cao, phục vụ hàng ngàn gia đình Việt Nam</p>
+                </div>
+                <div class="footer-col">
+                    <h4 data-vi="Liên kết nhanh" data-en="Quick Links">Liên kết nhanh</h4>
+                    <ul>
+                        <li><a href="about.html" data-vi="Giới thiệu" data-en="About">Giới thiệu</a></li>
+                        <li><a href="products.html" data-vi="Sản phẩm" data-en="Products">Sản phẩm</a></li>
+                        <li><a href="services.html" data-vi="Dịch vụ" data-en="Services">Dịch vụ</a></li>
+                        <li><a href="news.html" data-vi="Tin tức" data-en="News">Tin tức</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-vi="Liên hệ" data-en="Contact">Liên hệ</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> <span data-vi="Hà Nội, Việt Nam" data-en="Hanoi, Vietnam">Hà Nội, Việt Nam</span></li>
+                        <li><i class="fas fa-phone"></i> <span>+84 123 456 789</span></li>
+                        <li><i class="fas fa-envelope"></i> <span>info@hichina.vn</span></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-vi="Theo dõi chúng tôi" data-en="Follow Us">Theo dõi chúng tôi</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HiChina. <span data-vi="Tất cả quyền được bảo lưu." data-en="All rights reserved.">Tất cả quyền được bảo lưu.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Product filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const filter = this.getAttribute('data-filter');
+
+                // Update active button
+                filterButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                // Filter products
+                productCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

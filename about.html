@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu - HiChina</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        .about-detail {
+            padding: 80px 0;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .about-image {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .about-text h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .mission-vision {
+            background: var(--bg-light);
+            padding: 80px 0;
+        }
+
+        .mv-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .mv-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .mv-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .mv-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .mv-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .values-section {
+            padding: 80px 0;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .value-item i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .value-item h4 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .value-item p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .timeline {
+            background: var(--bg-light);
+            padding: 80px 0;
+        }
+
+        .timeline-items {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-items::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--primary-color);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            padding-right: 55%;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            padding-left: 55%;
+            text-align: left;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 0 4px var(--white);
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-year {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .about-grid,
+            .mv-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-items::before {
+                left: 20px;
+            }
+
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                padding-left: 50px;
+                padding-right: 0;
+                text-align: left;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>HiChina</h1>
+                    <p class="tagline">Thiết bị gia dụng chất lượng</p>
+                </div>
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="index.html" data-vi="Trang chủ" data-en="Home">Trang chủ</a></li>
+                        <li><a href="about.html" class="active" data-vi="Giới thiệu" data-en="About">Giới thiệu</a></li>
+                        <li><a href="products.html" data-vi="Sản phẩm" data-en="Products">Sản phẩm</a></li>
+                        <li><a href="services.html" data-vi="Dịch vụ" data-en="Services">Dịch vụ</a></li>
+                        <li><a href="news.html" data-vi="Tin tức" data-en="News">Tin tức</a></li>
+                        <li><a href="contact.html" data-vi="Liên hệ" data-en="Contact">Liên hệ</a></li>
+                    </ul>
+                </nav>
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="vi">VI</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 data-vi="Giới thiệu về HiChina" data-en="About HiChina">Giới thiệu về HiChina</h1>
+            <p data-vi="Đối tác tin cậy cho mọi gia đình Việt" data-en="Trusted partner for every Vietnamese family">Đối tác tin cậy cho mọi gia đình Việt</p>
+        </div>
+    </section>
+
+    <!-- About Detail -->
+    <section class="about-detail">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="https://via.placeholder.com/600x400" alt="HiChina Company">
+                </div>
+                <div class="about-text">
+                    <h2 data-vi="Câu chuyện của chúng tôi" data-en="Our Story">Câu chuyện của chúng tôi</h2>
+                    <p data-vi="HiChina được thành lập vào năm 2010 với khát vọng mang đến cho người tiêu dùng Việt Nam những sản phẩm gia dụng chất lượng cao, hiện đại và tiện nghi." data-en="HiChina was founded in 2010 with the aspiration to bring Vietnamese consumers high-quality, modern and convenient household products.">
+                        HiChina được thành lập vào năm 2010 với khát vọng mang đến cho người tiêu dùng Việt Nam những sản phẩm gia dụng chất lượng cao, hiện đại và tiện nghi.
+                    </p>
+                    <p data-vi="Với hơn 15 năm kinh nghiệm trong lĩnh vực phân phối và tư vấn thiết bị gia dụng, chúng tôi đã trở thành đối tác tin cậy của hàng ngàn gia đình trên toàn quốc." data-en="With over 15 years of experience in distributing and consulting household appliances, we have become a trusted partner for thousands of families nationwide.">
+                        Với hơn 15 năm kinh nghiệm trong lĩnh vực phân phối và tư vấn thiết bị gia dụng, chúng tôi đã trở thành đối tác tin cậy của hàng ngàn gia đình trên toàn quốc.
+                    </p>
+                    <p data-vi="Đội ngũ chuyên viên giàu kinh nghiệm của chúng tôi luôn sẵn sàng tư vấn và hỗ trợ khách hàng lựa chọn sản phẩm phù hợp nhất với nhu cầu và ngân sách." data-en="Our experienced team of specialists is always ready to advise and support customers in choosing the most suitable products for their needs and budget.">
+                        Đội ngũ chuyên viên giàu kinh nghiệm của chúng tôi luôn sẵn sàng tư vấn và hỗ trợ khách hàng lựa chọn sản phẩm phù hợp nhất với nhu cầu và ngân sách.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="mission-vision">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-vi="Sứ mệnh & Tầm nhìn" data-en="Mission & Vision">Sứ mệnh & Tầm nhìn</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="mv-grid">
+                <div class="mv-card">
+                    <i class="fas fa-bullseye"></i>
+                    <h3 data-vi="Sứ mệnh" data-en="Mission">Sứ mệnh</h3>
+                    <p data-vi="Mang đến những giải pháp gia dụng thông minh, tiện nghi và thân thiện với môi trường, góp phần nâng cao chất lượng cuộc sống của mọi gia đình Việt Nam." data-en="Bringing smart, convenient and environmentally friendly household solutions, contributing to improving the quality of life of every Vietnamese family.">
+                        Mang đến những giải pháp gia dụng thông minh, tiện nghi và thân thiện với môi trường, góp phần nâng cao chất lượng cuộc sống của mọi gia đình Việt Nam.
+                    </p>
+                </div>
+                <div class="mv-card">
+                    <i class="fas fa-eye"></i>
+                    <h3 data-vi="Tầm nhìn" data-en="Vision">Tầm nhìn</h3>
+                    <p data-vi="Trở thành công ty phân phối thiết bị gia dụng hàng đầu tại Việt Nam và khu vực Đông Nam Á, được khách hàng tin tưởng và lựa chọn bởi chất lượng sản phẩm và dịch vụ xuất sắc." data-en="Become the leading household appliance distribution company in Vietnam and Southeast Asia, trusted and chosen by customers for product quality and excellent service.">
+                        Trở thành công ty phân phối thiết bị gia dụng hàng đầu tại Việt Nam và khu vực Đông Nam Á, được khách hàng tin tưởng và lựa chọn bởi chất lượng sản phẩm và dịch vụ xuất sắc.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="values-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-vi="Giá trị cốt lõi" data-en="Core Values">Giá trị cốt lõi</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="values-grid">
+                <div class="value-item">
+                    <i class="fas fa-medal"></i>
+                    <h4 data-vi="Chất lượng" data-en="Quality">Chất lượng</h4>
+                    <p data-vi="Cam kết cung cấp sản phẩm chính hãng, chất lượng cao từ các thương hiệu uy tín" data-en="Committed to providing genuine, high-quality products from reputable brands">Cam kết cung cấp sản phẩm chính hãng, chất lượng cao từ các thương hiệu uy tín</p>
+                </div>
+                <div class="value-item">
+                    <i class="fas fa-handshake"></i>
+                    <h4 data-vi="Uy tín" data-en="Reputation">Uy tín</h4>
+                    <p data-vi="Xây dựng niềm tin thông qua dịch vụ chuyên nghiệp và trách nhiệm với khách hàng" data-en="Building trust through professional service and responsibility to customers">Xây dựng niềm tin thông qua dịch vụ chuyên nghiệp và trách nhiệm với khách hàng</p>
+                </div>
+                <div class="value-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <h4 data-vi="Đổi mới" data-en="Innovation">Đổi mới</h4>
+                    <p data-vi="Liên tục cập nhật công nghệ mới, sản phẩm mới để đáp ứng nhu cầu thị trường" data-en="Continuously updating new technologies and products to meet market needs">Liên tục cập nhật công nghệ mới, sản phẩm mới để đáp ứng nhu cầu thị trường</p>
+                </div>
+                <div class="value-item">
+                    <i class="fas fa-heart"></i>
+                    <h4 data-vi="Tận tâm" data-en="Dedication">Tận tâm</h4>
+                    <p data-vi="Phục vụ khách hàng với thái độ nhiệt tình, chu đáo và tận tình" data-en="Serving customers with enthusiastic, thoughtful and dedicated attitude">Phục vụ khách hàng với thái độ nhiệt tình, chu đáo và tận tình</p>
+                </div>
+                <div class="value-item">
+                    <i class="fas fa-leaf"></i>
+                    <h4 data-vi="Bền vững" data-en="Sustainability">Bền vững</h4>
+                    <p data-vi="Ưu tiên các sản phẩm thân thiện với môi trường, tiết kiệm năng lượng" data-en="Prioritize environmentally friendly, energy-saving products">Ưu tiên các sản phẩm thân thiện với môi trường, tiết kiệm năng lượng</p>
+                </div>
+                <div class="value-item">
+                    <i class="fas fa-users"></i>
+                    <h4 data-vi="Cộng đồng" data-en="Community">Cộng đồng</h4>
+                    <p data-vi="Đóng góp tích cực cho cộng đồng và xã hội thông qua các hoạt động ý nghĩa" data-en="Contributing positively to the community and society through meaningful activities">Đóng góp tích cực cho cộng đồng và xã hội thông qua các hoạt động ý nghĩa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="timeline">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-vi="Hành trình phát triển" data-en="Development Journey">Hành trình phát triển</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="timeline-items">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2010</div>
+                        <h4 data-vi="Khởi đầu" data-en="Beginning">Khởi đầu</h4>
+                        <p data-vi="Thành lập công ty với showroom đầu tiên tại Hà Nội" data-en="Company established with first showroom in Hanoi">Thành lập công ty với showroom đầu tiên tại Hà Nội</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2013</div>
+                        <h4 data-vi="Mở rộng" data-en="Expansion">Mở rộng</h4>
+                        <p data-vi="Mở thêm 5 showroom tại TP.HCM và các tỉnh thành" data-en="Opened 5 more showrooms in HCMC and provinces">Mở thêm 5 showroom tại TP.HCM và các tỉnh thành</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2017</div>
+                        <h4 data-vi="Công nghệ" data-en="Technology">Công nghệ</h4>
+                        <p data-vi="Ra mắt hệ thống mua sắm trực tuyến và ứng dụng di động" data-en="Launched online shopping system and mobile app">Ra mắt hệ thống mua sắm trực tuyến và ứng dụng di động</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2020</div>
+                        <h4 data-vi="Thành tựu" data-en="Achievement">Thành tựu</h4>
+                        <p data-vi="Đạt mốc 5000 khách hàng hài lòng và 20 showroom toàn quốc" data-en="Reached 5000 satisfied customers and 20 showrooms nationwide">Đạt mốc 5000 khách hàng hài lòng và 20 showroom toàn quốc</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2025</div>
+                        <h4 data-vi="Hiện tại" data-en="Present">Hiện tại</h4>
+                        <p data-vi="Tiếp tục dẫn đầu với các sản phẩm thông minh và dịch vụ xuất sắc" data-en="Continue to lead with smart products and excellent service">Tiếp tục dẫn đầu với các sản phẩm thông minh và dịch vụ xuất sắc</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>HiChina</h3>
+                    <p data-vi="Thiết bị gia dụng chất lượng cao, phục vụ hàng ngàn gia đình Việt Nam" data-en="High-quality household appliances, serving thousands of Vietnamese families">Thiết bị gia dụng chất lượng cao, phục vụ hàng ngàn gia đình Việt Nam</p>
+                </div>
+                <div class="footer-col">
+                    <h4 data-vi="Liên kết nhanh" data-en="Quick Links">Liên kết nhanh</h4>
+                    <ul>
+                        <li><a href="about.html" data-vi="Giới thiệu" data-en="About">Giới thiệu</a></li>
+                        <li><a href="products.html" data-vi="Sản phẩm" data-en="Products">Sản phẩm</a></li>
+                        <li><a href="services.html" data-vi="Dịch vụ" data-en="Services">Dịch vụ</a></li>
+                        <li><a href="news.html" data-vi="Tin tức" data-en="News">Tin tức</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-vi="Liên hệ" data-en="Contact">Liên hệ</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> <span data-vi="Hà Nội, Việt Nam" data-en="Hanoi, Vietnam">Hà Nội, Việt Nam</span></li>
+                        <li><i class="fas fa-phone"></i> <span>+84 123 456 789</span></li>
+                        <li><i class="fas fa-envelope"></i> <span>info@hichina.vn</span></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-vi="Theo dõi chúng tôi" data-en="Follow Us">Theo dõi chúng tôi</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HiChina. <span data-vi="Tất cả quyền được bảo lưu." data-en="All rights reserved.">Tất cả quyền được bảo lưu.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
