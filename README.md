@@ -12,6 +12,9 @@ HiChina là website doanh nghiệp chuyên cung cấp các thiết bị gia dụ
 - **Đa ngôn ngữ**: Hỗ trợ Tiếng Việt và Tiếng Anh
 - **Responsive**: Tương thích với mọi thiết bị (Desktop, Tablet, Mobile)
 - **SEO Friendly**: Cấu trúc HTML semantic chuẩn SEO
+- **Form liên hệ**: Lưu trữ thông tin liên hệ vào database MySQL
+- **Admin Panel**: Quản lý danh sách liên hệ với đầy đủ chức năng CRUD
+- **Authentication**: Hệ thống đăng nhập bảo mật cho admin
 
 ## Cấu trúc trang
 
@@ -57,22 +60,48 @@ HiChina là website doanh nghiệp chuyên cung cấp các thiết bị gia dụ
 
 ## Công nghệ sử dụng
 
+### Frontend
 - **HTML5**: Cấu trúc trang web
 - **CSS3**: Styling và animations
 - **JavaScript (ES6+)**: Tính năng tương tác
 - **Font Awesome 6**: Icons
 - **Google Maps**: Bản đồ địa chỉ
 
+### Backend
+- **PHP 7.4+**: Server-side scripting
+- **MySQL 5.7+**: Cơ sở dữ liệu
+- **PDO**: Database connection và prepared statements
+- **Session**: Quản lý đăng nhập admin
+
 ## Cài đặt và chạy
 
-1. Clone repository:
+### Yêu cầu
+- PHP 7.4+
+- MySQL 5.7+ hoặc MariaDB 10.2+
+- Apache hoặc Nginx web server
+- XAMPP/WAMP (cho môi trường development)
+
+### Hướng dẫn cài đặt chi tiết
+
+**Xem file [INSTALL.md](INSTALL.md) để có hướng dẫn chi tiết từng bước.**
+
+### Cài đặt nhanh với XAMPP
+
+1. Clone repository vào thư mục `htdocs`:
 ```bash
+cd C:\xampp\htdocs\
 git clone <repository-url>
 ```
 
-2. Mở file `index.html` bằng trình duyệt web hoặc sử dụng Live Server
+2. Tạo database:
+   - Mở http://localhost/phpmyadmin
+   - Import file `database.sql`
 
-3. Không cần cài đặt thêm dependencies vì đây là static website
+3. Cấu hình database trong `config.php` (nếu cần)
+
+4. Truy cập website:
+   - Frontend: http://localhost/GioiThieuDoanhNghiep_HICHINA/
+   - Admin: http://localhost/GioiThieuDoanhNghiep_HICHINA/admin/login.php
 
 ## Cấu trúc thư mục
 
@@ -85,6 +114,14 @@ GioiThieuDoanhNghiep_HICHINA/
 ├── js/
 │   └── main.js            # File JavaScript chính
 │
+├── api/
+│   └── contact.php        # API xử lý form liên hệ
+│
+├── admin/
+│   ├── login.php          # Trang đăng nhập admin
+│   ├── dashboard.php      # Dashboard quản lý liên hệ
+│   └── logout.php         # Xử lý đăng xuất
+│
 ├── images/                # Thư mục chứa hình ảnh
 ├── assets/                # Thư mục chứa tài nguyên khác
 │
@@ -94,7 +131,11 @@ GioiThieuDoanhNghiep_HICHINA/
 ├── services.html          # Trang dịch vụ
 ├── news.html              # Trang tin tức
 ├── contact.html           # Trang liên hệ
-└── README.md              # File hướng dẫn
+│
+├── config.php             # Cấu hình database
+├── database.sql           # Schema database
+├── README.md              # File hướng dẫn
+└── INSTALL.md             # Hướng dẫn cài đặt chi tiết
 ```
 
 ## Tính năng nổi bật
@@ -152,6 +193,93 @@ Chỉnh sửa trực tiếp trong các file HTML hoặc thêm thuộc tính `dat
 ## License
 
 © 2025 HiChina. All rights reserved.
+
+## Admin Panel
+
+### Truy cập
+- URL: `http://localhost/GioiThieuDoanhNghiep_HICHINA/admin/login.php`
+- Username mặc định: `admin`
+- Password mặc định: `admin123`
+
+### Tính năng
+- **Dashboard**: Thống kê tổng quan (tổng liên hệ, mới, đã đọc, đã trả lời)
+- **Danh sách liên hệ**: Hiển thị tất cả liên hệ với phân trang
+- **Tìm kiếm & Lọc**: Tìm kiếm theo tên/email/phone, lọc theo trạng thái
+- **Xem chi tiết**: Xem đầy đủ thông tin liên hệ trong modal
+- **Cập nhật trạng thái**: Đổi trạng thái liên hệ (Mới → Đã đọc → Đã trả lời)
+- **Xóa liên hệ**: Xóa các liên hệ không cần thiết
+- **Tự động đánh dấu đã đọc**: Khi xem chi tiết, tự động chuyển từ "Mới" sang "Đã đọc"
+
+### Bảo mật
+- Mã hóa mật khẩu bằng bcrypt
+- Session-based authentication
+- CSRF protection
+- SQL injection prevention với PDO Prepared Statements
+- XSS protection với htmlspecialchars
+
+## Database Schema
+
+### Bảng: contacts
+Lưu trữ thông tin liên hệ từ form
+
+| Cột | Kiểu | Mô tả |
+|-----|------|-------|
+| id | INT | Primary key, auto increment |
+| name | VARCHAR(255) | Họ tên người liên hệ |
+| email | VARCHAR(255) | Email |
+| phone | VARCHAR(50) | Số điện thoại |
+| subject | VARCHAR(255) | Chủ đề (support, product, warranty, complaint, other) |
+| message | TEXT | Nội dung tin nhắn |
+| status | ENUM | Trạng thái: new, read, replied |
+| created_at | TIMESTAMP | Thời gian gửi |
+| updated_at | TIMESTAMP | Thời gian cập nhật |
+
+### Bảng: admin_users
+Lưu trữ tài khoản admin
+
+| Cột | Kiểu | Mô tả |
+|-----|------|-------|
+| id | INT | Primary key, auto increment |
+| username | VARCHAR(100) | Tên đăng nhập (unique) |
+| password | VARCHAR(255) | Mật khẩu đã hash (bcrypt) |
+| email | VARCHAR(255) | Email admin |
+| full_name | VARCHAR(255) | Họ tên đầy đủ |
+| created_at | TIMESTAMP | Ngày tạo tài khoản |
+| last_login | TIMESTAMP | Lần đăng nhập cuối |
+
+## API Endpoints
+
+### POST /api/contact.php
+Xử lý form liên hệ
+
+**Request Body:**
+```json
+{
+  "name": "Nguyễn Văn A",
+  "email": "example@email.com",
+  "phone": "0901234567",
+  "subject": "product",
+  "message": "Nội dung tin nhắn"
+}
+```
+
+**Response Success (200):**
+```json
+{
+  "success": true,
+  "message": "Cảm ơn bạn đã liên hệ!...",
+  "id": 123
+}
+```
+
+**Response Error (400):**
+```json
+{
+  "success": false,
+  "message": "Vui lòng kiểm tra lại thông tin",
+  "errors": ["Email không hợp lệ", "..."]
+}
+```
 
 ## Liên hệ
 

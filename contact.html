@@ -452,5 +452,50 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+        // Xử lý form contact submit
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const form = this;
+            const submitBtn = form.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+
+            // Disable button và thay đổi text
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Đang gửi...';
+
+            // Lấy dữ liệu form
+            const formData = new FormData(form);
+
+            // Gửi AJAX request
+            fetch('api/contact.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Hiển thị thông báo thành công
+                    alert(data.message);
+                    // Reset form
+                    form.reset();
+                } else {
+                    // Hiển thị lỗi
+                    const errorMsg = data.errors ? data.errors.join('\n') : data.message;
+                    alert(errorMsg);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Đã có lỗi xảy ra. Vui lòng thử lại sau.');
+            })
+            .finally(() => {
+                // Enable lại button
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            });
+        });
+    </script>
 </body>
 </html>
